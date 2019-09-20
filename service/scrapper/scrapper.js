@@ -73,4 +73,6 @@ const upload = (filepath) => {
 // wait for some time
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-start();
+module.exports = {
+    start
+}
