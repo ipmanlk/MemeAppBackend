@@ -28,15 +28,10 @@ const scrapeImages = async () => {
 const download = (uri, hash) => {
     dao.check({hash: hash}).then(() => {
         let filepath = `./images/${hash}.jpg`;
-        request(uri).pipe(fs.createWriteStream(filepath)).on('close', () => {
-            upload(filepath).then(async (url) => {
-                console.log(url);
-                fs.unlinkSync(filepath);
-                dao.save({ url: url, hash: hash })
-            }).catch(err => {
-                fs.unlinkSync(filepath);
-                // console.log(err);
-            })
+        request(uri).pipe(fs.createWriteStream(filepath)).on('close', async() => {
+            let url = await upload(filepath);
+            fs.unlinkSync(filepath);
+            dao.save({ url: url, hash: hash })
         });
     }).catch(err => {
         // console.log(err);
