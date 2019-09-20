@@ -6,7 +6,7 @@ const getAll = (id) => {
         if (id == null) {
             sql = `SELECT id, url, date FROM memes ORDER BY id DESC LIMIT 10`;
         } else {
-            sql = `SELECT id, url, date FROM memes WEHRE id < ${id} ORDER BY id DESC LIMIT 10`;
+            sql = `SELECT id, url, date FROM memes WHERE id < ${id} ORDER BY id DESC LIMIT 10`;
         }
         db.all(sql, [], (err, rows) => {
             if (err) {
