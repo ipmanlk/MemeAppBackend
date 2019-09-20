@@ -8,7 +8,7 @@ const scrapeImages = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    await page.goto('https://www.reddit.com/r/dankmemes/hot/');
+    await page.goto('https://proxysite.site/index.php?q=ztjXoaZzlGGo26dm2MeUl8zaj5qoo5DWZtPIn8qlk5vV2A');
 
     await page.waitForSelector('img ', {
         visible: true,
@@ -35,11 +35,11 @@ const download = (uri, hash) => {
                 dao.save({ url: url, hash: hash })
             }).catch(err => {
                 fs.unlinkSync(filepath);
-                console.log(err);
+                // console.log(err);
             })
         });
     }).catch(err => {
-        console.log(err);
+        // console.log(err);
     })
 };
 
