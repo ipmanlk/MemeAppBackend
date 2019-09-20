@@ -8,7 +8,11 @@ const scrapeImages = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    await page.goto('https://proxysite.site/index.php?q=ztjXoaZzlGGo26dm2MeUl8zaj5qoo5DWZtPIn8qlk5vV2A');
+    await page.goto('https://www.freeproxyserver.co/');
+    
+    await page.type('[id=input]', 'https://www.reddit.com/r/memes/');
+
+    await page.click('[type=submit]');
 
     await page.waitForSelector('img ', {
         visible: true,
