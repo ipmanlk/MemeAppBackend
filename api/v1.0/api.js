@@ -1,11 +1,21 @@
 const dao = require("./dao");
 
-const handle = async(req) => {
-    let id = (req.query.id) ? req.query.id : null;
+const getAll = async (id) => {
     let data = await dao.getAll(id);
     return JSON.stringify(data);
 }
 
+const addLike = async (id) => {
+    dao.addLike(id);
+}
+
+const getBest = async () => {
+    let data = await dao.getBest();
+    return JSON.stringify(data);
+}
+
 module.exports = {
-    handle
+    getAll,
+    addLike,
+    getBest
 }
