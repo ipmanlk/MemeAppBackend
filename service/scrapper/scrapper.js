@@ -37,7 +37,7 @@ const upload = (filepath) => {
                 reject(err);
             } else {
                 if (/^(ftp|http|https):\/\/[^ "]+$/.test(body)) {
-                    resolve(body);
+                    resolve(body.replace(/(?:\r\n|\r|\n)/g, ''));
                 } else {
                     reject(body);
                 }
