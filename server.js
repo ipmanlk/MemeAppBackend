@@ -7,12 +7,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const api = require("./api/v1.0/api");
 
-app.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    next();
-});
-
 app.get('/api/memes', async (req, res) => {
     let data = await api.getAll(null);
     res.send(data);
