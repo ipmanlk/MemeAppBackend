@@ -11,13 +11,11 @@ const scrapeImages = async () => {
 const download = (uri, hash) => {
     dao.check({ hash: hash }).then(() => {
         let filepath = `./images/${hash}.jpg`;
-        request(uri).pipe(fs.createWriteStream(filepath)).on('close', async () => {
-            let url = await upload(filepath);
-            fs.unlinkSync(filepath);
-            dao.save({ url: url, hash: hash })
+        request(uri).pipe(fs.createWriteStream(filepath)).on('close', () => {
+            dao.save({ url: `${hash}.jpg`, hash: hash })
         });
     }).catch(err => {
-        // console.log(err);
+        console.log(err);
     })
 };
 
@@ -27,24 +25,6 @@ const start = async () => {
         let imageHash = await sha256(url);
         let hash = imageHash.substring(0, 9);
         download(url, hash);
-    })
-}
-
-const upload = (filepath) => {
-    return new Promise((resolve, reject) => {
-        const req = request.post("https://0x0.st/", function (err, resp, body) {
-            if (err) {
-                reject(err);
-            } else {
-                if (/^(ftp|http|https):\/\/[^ "]+$/.test(body)) {
-                    resolve(body.replace(/(?:\r\n|\r|\n)/g, ''));
-                } else {
-                    reject(body);
-                }
-            }
-        });
-        const form = req.form();
-        form.append('file', fs.createReadStream(filepath));
     })
 }
 

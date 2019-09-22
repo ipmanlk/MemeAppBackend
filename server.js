@@ -4,6 +4,7 @@ const port = 3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/meme', express.static('./images'));
 
 const api = require("./api/v1.0/api");
 
