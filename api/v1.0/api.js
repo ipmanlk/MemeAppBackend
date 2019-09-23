@@ -8,7 +8,10 @@ const getAll = async (id) => {
 }
 
 const addLike = async (id) => {
-    dao.addLike(id);
+    let data = await dao.addLike(id).catch(() => {
+        return JSON.stringify({error: "addLike"})
+    });
+    return JSON.stringify(data);
 }
 
 const getBest = async () => {

@@ -29,8 +29,8 @@ app.get('/api/best', async (req, res) => {
 });
 
 app.put('/api/like/:id', async (req, res) => {
-    api.addLike(req.params.id);
-    res.send("0");
+    let data = await api.addLike(req.params.id);
+    res.send(data);
 });
 
 app.listen(port, () => console.log(`MemeApp app listening on port ${port}!`));

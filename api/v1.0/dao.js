@@ -29,17 +29,19 @@ const getBest = () => {
     })
 }
 
-const addLike = (id) => {
-    db.get(`SELECT * FROM memes WHERE id = ?`, [id], (err, row) => {
-        let likes = parseInt(row.likes) + 1;
-        db.run(`UPDATE memes SET likes = ? WHERE id = ?`, [likes, id], function (err) {
-            if (err) {
-                return console.log(err.message);
-            }
-            // get the last insert id
-            console.log(`A row has been updated.`);
+const addLike = async (id) => {
+    return new Promise((resolve, reject) => {
+        db.get(`SELECT * FROM memes WHERE id = ?`, [id], (err, row) => {
+            let likes = parseInt(row.likes) + 1;
+            db.run(`UPDATE memes SET likes = ? WHERE id = ?`, [likes, id], function (err) {
+                if (err) {
+                    console.log(err.message);
+                    reject(err);
+                }
+                resolve({ "likes": likes });
+            });
         });
-    });
+    })
 }
 
 
