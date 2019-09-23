@@ -18,8 +18,18 @@ const getBest = async () => {
     return JSON.stringify(data);
 }
 
+const getMeme = async (id) => {
+    let data = await dao.getMeme(id).catch(() => {
+        return JSON.stringify({error: "getMeme"})
+    });
+
+    return JSON.stringify(data);
+}
+
+
 module.exports = {
     getAll,
     addLike,
-    getBest
+    getBest,
+    getMeme
 }

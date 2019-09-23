@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -10,6 +10,11 @@ const api = require("./api/v1.0/api");
 
 app.get('/api/memes', async (req, res) => {
     let data = await api.getAll(null);
+    res.send(data);
+});
+
+app.get('/api/meme/:id', async (req, res) => {
+    let data = await api.getMeme(req.params.id);
     res.send(data);
 });
 

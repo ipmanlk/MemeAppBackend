@@ -42,8 +42,22 @@ const addLike = (id) => {
     });
 }
 
+
+const getMeme = async (id) => {
+    return new Promise((resolve, reject) => {
+        db.get(`SELECT * FROM memes WHERE id = ?`, [id], (err, row) => {
+            if (err) {
+                console.log(err.message);
+                reject(err);
+            }
+            resolve(row);
+        });
+    })
+}
+
 module.exports = {
     getAll,
     addLike,
-    getBest
+    getBest,
+    getMeme
 }
