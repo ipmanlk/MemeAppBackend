@@ -33,4 +33,9 @@ app.put('/api/like/:id', async (req, res) => {
     res.send(data);
 });
 
+app.get('/meme/:hash/download', function (req, res) {
+    let file = `${__dirname}/images/${req.params.hash}.jpg`;
+    res.download(file); 
+});
+
 app.listen(port, () => console.log(`MemeApp app listening on port ${port}!`));
