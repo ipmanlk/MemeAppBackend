@@ -1,7 +1,15 @@
 const puppeteer = require('puppeteer');
 
 const scrape = async () => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--proxy-server=socks5://127.0.0.1:9050']
+    });
+
+    // const browser = await puppeteer.launch({
+    //     headless: true
+    // });
+
     const page = await browser.newPage();
     const subreddits = [
         "https://www.reddit.com/r/memes/hot/",
