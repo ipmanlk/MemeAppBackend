@@ -4,8 +4,8 @@ const hashSum = require('hash-sum');
 const dao = require('./dao');
 
 const scrapeImages = async () => {
-    const memes = require("./sites/r-memes");
-    return await memes.scrape();
+    const site = require("./sites/reddit");
+    return await site.scrape();
 }
 
 const download = (uri, hash) => {
