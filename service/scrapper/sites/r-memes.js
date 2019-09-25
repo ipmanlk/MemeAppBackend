@@ -4,7 +4,7 @@ const scrape = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    await page.goto('https://www.reddit.com/r/memes/');
+    await page.goto('https://www.reddit.com/r/memes/hot/');
 
     await page.waitForSelector('img ', {
         visible: true,
