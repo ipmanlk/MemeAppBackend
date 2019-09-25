@@ -1,6 +1,6 @@
 const request = require('request');
 const fs = require('fs');
-const sha256 = require('simple-sha256');
+const hashSum = require('hash-sum');
 const dao = require('./dao');
 
 const scrapeImages = async () => {
@@ -21,9 +21,8 @@ const download = (uri, hash) => {
 
 const start = async () => {
     let data = await scrapeImages();
-    data.forEach(async (url) => {
-        let imageHash = await sha256(url);
-        let hash = imageHash.substring(0, 9);
+    data.forEach((url) => {
+        let hash = hashSum(url);
         download(url, hash);
     })
 }
