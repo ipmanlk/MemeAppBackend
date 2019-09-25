@@ -3,16 +3,27 @@ const puppeteer = require('puppeteer');
 const scrape = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+    const subreddits = [
+        "https://www.reddit.com/r/memes/hot/",
+        "https://www.reddit.com/r/raimimemes/hot/",
+        "https://www.reddit.com/r/PrequelMemes/hot/",
+        "https://www.reddit.com/r/raimimemes/hot/"
+    ];
 
-    await page.goto('https://www.reddit.com/r/memes/hot/');
+    let data = [];
+    let urls;
 
-    let data = await getImgUrls(page);
+    for (let subreddit of subreddits) {
+        await page.goto(subreddit);
+        urls = await getImgUrls(page);
+        data = data.concat(urls);
+    }
 
     await browser.close();
     return data;
 }
 
-const getImgUrls = async(page) => {
+const getImgUrls = async (page) => {
     await page.waitForSelector('img ', {
         visible: true,
     });
