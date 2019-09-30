@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /home/ip/MemeApp && node scrape.js
+cd /home/ip/MemeApp && timeout 2m node scrape.js
