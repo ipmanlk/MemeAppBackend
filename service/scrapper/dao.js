@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./data/memes.db');
+const db = new sqlite3.Database(`${__dirname}/../../data/memes.db`);
 
 const check = (meme) => {
     return new Promise((resolve, reject) => {

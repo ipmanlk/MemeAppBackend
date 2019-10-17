@@ -1,16 +1,16 @@
 const request = require('request');
 const fs = require('fs');
 const hashSum = require('hash-sum');
-const dao = require('./dao');
+const dao = require(`${__dirname}/dao.js`);
 
 const scrapeImages = async () => {
-    const site = require("./sites/reddit");
+    const site = require(`${__dirname}/sites/fb`);
     return await site.scrape();
 }
 
 const download = (uri, hash) => {
     dao.check({ hash: hash }).then(() => {
-        let filepath = `./images/${hash}.jpg`;
+        let filepath = `${__dirname}/../../images/${hash}.jpg`;
         request(uri).pipe(fs.createWriteStream(filepath)).on('close', () => {
             dao.save({ img: `${hash}.jpg`, hash: hash })
         });
@@ -29,6 +29,7 @@ const start = async () => {
 
 // wait for some time
 const delay = ms => new Promise(res => setTimeout(res, ms));
+
 
 module.exports = {
     start
