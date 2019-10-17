@@ -14,7 +14,14 @@ const scrape = async () => {
         "https://www.facebook.com/pg/OfficialPieFM/posts/",
         "https://www.facebook.com/pg/chiku.official/posts/",
         "https://www.facebook.com/pg/SLSavageMemes/posts/",
-        "https://www.facebook.com/pg/memeyakaSL/posts/"
+        "https://www.facebook.com/pg/memeyakaSL/posts/",
+        "https://www.facebook.com/pg/CeylonMemes.lk/posts/",
+        "https://www.facebook.com/pg/LankanHubs/posts/",
+        "https://www.facebook.com/pg/4KMEMEhubOfficial/posts/",
+        "https://www.facebook.com/pg/Ceylon404/posts/",
+        "https://www.facebook.com/pg/SriHubOFFICIAL/posts/",
+        "https://www.facebook.com/pg/SLmemehub/posts/",
+        "https://www.facebook.com/pg/TheRealCTB/posts/"
     ];
 
     let data = {};
