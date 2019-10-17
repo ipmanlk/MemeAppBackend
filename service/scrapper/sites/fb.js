@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
+const dao = require(`${__dirname}/../dao.js`);
+const hashSum = require('hash-sum');
 
 const scrape = async () => {
     const browser = await puppeteer.launch({
         headless: true
     });
 
-    const page = await browser.newPage();
     const pages = [
         "https://www.facebook.com/pg/ApiSriLankanBro/posts/",
         "https://www.facebook.com/pg/trigg3rnation/posts/",
@@ -24,17 +25,20 @@ const scrape = async () => {
         "https://www.facebook.com/pg/TheRealCTB/posts/"
     ];
 
-    let data = {};
-    let urls;
 
     for (let fbpage of pages) {
+        const page = await browser.newPage();
         await page.goto(fbpage);
         urls = await getImgUrls(page);
-        data[fbpage] = urls;
+        
+        for (x=0; x < urls.length; x++) {
+            let img = urls[x];
+            let hash = hashSum(img);
+            dao.save({ img, hash, fbpage });
+        }
     }
 
     await browser.close();
-    return data;
 }
 
 const getImgUrls = async (page) => {
