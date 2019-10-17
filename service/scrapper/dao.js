@@ -12,7 +12,7 @@ const check = (meme) => {
 
 const save = (meme) => {
     check(meme).then(() => {
-        db.run(`INSERT INTO memes(img, hash, date) VALUES(?, ?, CURRENT_TIMESTAMP);`, [meme.img, meme.hash], function (err) {
+        db.run(`INSERT INTO memes(img, hash,source, date) VALUES(?, ?, ?, CURRENT_TIMESTAMP);`, [meme.img, meme.hash, meme.source], function (err) {
             if (err) {
                 return console.log(err.message);
             }

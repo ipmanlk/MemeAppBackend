@@ -17,13 +17,13 @@ const scrape = async () => {
         "https://www.facebook.com/pg/memeyakaSL/posts/"
     ];
 
-    let data = [];
+    let data = {};
     let urls;
 
-    for (let subreddit of pages) {
-        await page.goto(subreddit);
+    for (let fbpage of pages) {
+        await page.goto(fbpage);
         urls = await getImgUrls(page);
-        data = data.concat(urls);
+        data[fbpage] = urls;
     }
 
     await browser.close();
