@@ -4,7 +4,11 @@ const port = 3001;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/meme', express.static('./images'));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const api = require("./api/v1.0/api");
 
@@ -33,9 +37,5 @@ app.put('/api/like/:id', async (req, res) => {
     res.send(data);
 });
 
-app.get('/meme/:hash/download', function (req, res) {
-    let file = `${__dirname}/images/${req.params.hash}.jpg`;
-    res.download(file); 
-});
 
 app.listen(port, () => console.log(`MemeApp app listening on port ${port}!`));
