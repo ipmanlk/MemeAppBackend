@@ -25,13 +25,15 @@ const scrape = async () => {
         "https://www.facebook.com/pg/TheRealCTB/posts/"
     ];
 
+    const page = await browser.newPage();
+    page.waitForNavigation({ timeout: 0 });
 
     for (let fbpage of pages) {
-        const page = await browser.newPage();
         await page.goto(fbpage);
+        page.waitForNavigation({ timeout: 0 });
         urls = await getImgUrls(page);
-        
-        for (x=0; x < urls.length; x++) {
+
+        for (x = 0; x < urls.length; x++) {
             let img = urls[x];
             let hash = hashSum(img);
             dao.save({ img, hash, fbpage });
