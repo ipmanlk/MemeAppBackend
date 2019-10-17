@@ -18,7 +18,7 @@ const start = async () => {
 
 // wait for some time
 const delay = ms => new Promise(res => setTimeout(res, ms));
-start()
+
 module.exports = {
     start
 }
