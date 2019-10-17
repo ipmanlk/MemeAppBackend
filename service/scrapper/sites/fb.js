@@ -36,7 +36,8 @@ const scrape = async () => {
         for (x = 0; x < urls.length; x++) {
             let img = urls[x];
             let hash = hashSum(img);
-            dao.save({ img, hash, fbpage });
+            let source = fbpage;
+            dao.save({ img, hash, source });
         }
     }
 
