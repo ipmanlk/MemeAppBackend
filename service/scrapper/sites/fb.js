@@ -26,11 +26,11 @@ const scrape = async () => {
     ];
 
     const page = await browser.newPage();
-    page.waitForNavigation({ timeout: 0 });
+    page.waitForNavigation();
 
     for (let fbpage of pages) {
-        await page.goto(fbpage);
-        page.waitForNavigation({ timeout: 0 });
+        await page.goto(fbpage, { timeout: 0 });
+        page.waitForNavigation();
         urls = await getImgUrls(page);
 
         for (x = 0; x < urls.length; x++) {
