@@ -15,7 +15,18 @@ const scrape = async () => {
         "https://www.instagram.com/maha_hora",
         "https://www.instagram.com/2020__a.l",
         "https://www.instagram.com/kalawadda",
-        "https://www.instagram.com/athal_rusiya"
+        "https://www.instagram.com/athal_rusiya",
+        "https://www.instagram.com/athalma_witharai",
+        "https://www.instagram.com/kuppiya",
+        "https://www.instagram.com/chatarlanthaya",
+        "https://www.instagram.com/_v_ery___s_orry_",
+        "https://www.instagram.com/naifm.im",
+        "https://www.instagram.com/apisrilankanbro",
+        "https://www.instagram.com/a_m_d_a_",
+        "https://www.instagram.com/hitan_page",
+        "https://www.instagram.com/kuk_kuk_official",
+        "https://www.instagram.com/dmadu3924",
+        "https://www.instagram.com/athal_lokka_official"
     ];
 
     const page = await browser.newPage();
