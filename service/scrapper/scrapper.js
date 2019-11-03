@@ -1,5 +1,5 @@
 const start = async () => {
-    const site = require(`${__dirname}/sites/fb`);
+    const site = require(`${__dirname}/sites/instagram`);
     await site.scrape();
 }
 
