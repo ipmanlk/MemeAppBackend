@@ -25,7 +25,7 @@ const scrape = async () => {
         await page.goto(fbpage);
         page.waitForNavigation({ timeout: 0 });
         urls = await getImgUrls(page);
-
+        urls.reverse();
         for (x = 0; x < urls.length; x++) {
             let img = urls[x];
             let hash = hashSum(img);
